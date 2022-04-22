@@ -1,12 +1,17 @@
 package nl.codefounders.weather.api;
 
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import nl.codefounders.weather.model.Weather;
 import nl.codefounders.weather.service.WeatherService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("api/weather")
@@ -18,12 +23,6 @@ public class WeatherEndpoint {
     @PostMapping
     public Weather create(@RequestBody Weather source) {
         return this.weatherService.save(source);
-    }
-
-
-    @GetMapping
-    public List<Weather> findAll() {
-        return this.weatherService.findAll();
     }
 
     @GetMapping("{city}")
