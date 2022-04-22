@@ -21,6 +21,8 @@ import nl.codefounders.weather.model.Weather;
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class WeatherEndpointIT {
 
+	private static final String ALMELO = "Almelo";
+
 	@Autowired // (see this as Postman)
 	private TestRestTemplate restTemplate;
 
@@ -42,44 +44,37 @@ public class WeatherEndpointIT {
 
 		// Given
 		Weather almelo = new Weather();
-		almelo.setCity("Almelo");
+		almelo.setCity(ALMELO);
 		almelo.setTemperature(12.0);
-
 
 		// When
 		ResponseEntity<Weather> response = restTemplate.postForEntity(baseApi, almelo, Weather.class);
 
 		// Then
 		Weather responseWeather = response.getBody();
-
-		assertEquals("Almelo", responseWeather.getCity());
+		assertEquals(ALMELO, responseWeather.getCity());
 		assertEquals(12.0, responseWeather.getTemperature());
 	}
 
 	@Test
 	public void test2FindByCity() {
 
-		// Given
-
 		// When
-		ResponseEntity<Weather> response = restTemplate.getForEntity(baseApi + "/" + "Almelo", Weather.class);
-
+		ResponseEntity<Weather> response = restTemplate.getForEntity(baseApi + "/" + ALMELO, Weather.class);
+		
 		// Then
 		Weather result = response.getBody();
-
-		assertEquals("Almelo", result.getCity());
+		assertEquals(ALMELO, result.getCity());
 		assertEquals(12.0, result.getTemperature());
 
 	}
 	
 	@Test
 	public void test3FindNotExistingCity() {
+		// When
 		ResponseEntity<Weather> response = restTemplate.getForEntity(baseApi + "/" + "Utrecht", Weather.class);
-
-		// Then
-		Weather result = response.getBody();
 		
-		assertNull(result);
-	
+		// Then
+		assertNull(response.getBody());
 	}
 }
