@@ -16,9 +16,11 @@ import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.ResponseEntity;
 
 import nl.codefounders.weather.model.Weather;
+import org.springframework.test.context.ActiveProfiles;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @TestMethodOrder(MethodOrderer.MethodName.class)
+@ActiveProfiles("integrationtest")
 public class WeatherEndpointIT {
 
 	private static final String ALMELO = "Almelo";
