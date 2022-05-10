@@ -2,6 +2,7 @@ package nl.codefounders.weather.api;
 
 import java.util.Optional;
 
+import nl.codefounders.weather.WeatherConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,10 +19,15 @@ import nl.codefounders.weather.service.WeatherService;
 public class WeatherEndpoint {
 
     @Autowired
+    private WeatherConfig weatherConfig;
+
+    @Autowired
     private WeatherService weatherService;
 
     @PostMapping
     public Weather create(@RequestBody Weather source) {
+        System.err.println(this.weatherConfig.getType());
+
         return this.weatherService.save(source);
     }
 
