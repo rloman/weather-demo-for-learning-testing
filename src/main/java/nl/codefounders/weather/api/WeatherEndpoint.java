@@ -3,7 +3,9 @@ package nl.codefounders.weather.api;
 import java.util.Optional;
 
 import nl.codefounders.weather.WeatherConfig;
+import org.apache.tomcat.util.descriptor.web.SecurityRoleRef;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,9 +26,18 @@ public class WeatherEndpoint {
     @Autowired
     private WeatherService weatherService;
 
+    @Value("${companyName}")
+    private String companyName;
+
+    @Value("#{systemProperties.myVersion}")
+    private String version;
+
     @PostMapping
     public Weather create(@RequestBody Weather source) {
-        System.err.println(this.weatherConfig.getType());
+        System.err.printf("%-40s%n", this.weatherConfig.getType());
+        System.err.printf("%-40s%d%n", "Brought by: " + companyName, companyName.length());
+        System.err.printf("%-40s%d%n", "Version: " + this.version, this.version.length());
+
 
         return this.weatherService.save(source);
     }
