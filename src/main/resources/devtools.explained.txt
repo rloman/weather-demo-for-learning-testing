@@ -1,0 +1,8 @@
+Most handy, if you like it:
+Automatic restart when a file in the classpath has changed
+(I personally prefer Shift-Ctrl-F9 in Intellij to force a reload once in a while)
+
+Personally, you might like the LiveReload which reloads the browser
+using a Google or some other browser plugin
+For that and more see here =>
+https://www.baeldung.com/spring-boot-devtools
