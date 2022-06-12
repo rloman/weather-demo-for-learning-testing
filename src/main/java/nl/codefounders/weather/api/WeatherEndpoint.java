@@ -22,7 +22,7 @@ public class WeatherEndpoint {
     @Value("${companyName}")
     private String companyName;
 
-    @Value("#{systemProperties.myVersion}")
+    @Value("den poedel") // terugzetten naar #{systemProperties.myVersion}   (binnen de quotes)
     private String version;
 
     @PostMapping
