@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-@SpringBootApplication
+//@SpringBootApplication // enable later
 /**
 This class shows JDBC Templating: be aware you might
  have to set the spring.profiles.active=integrationtest
